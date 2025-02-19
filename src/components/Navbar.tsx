@@ -1,37 +1,31 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown, User, MapPin, BookOpen, Mail } from "lucide-react";
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  return (
-    <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-beige/20">
+  return <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-beige/20">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           <a href="/" className="font-serif text-2xl text-gold">Centro Novalaser</a>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#servicios" className="nav-link">Servicios</a>
+            
             <div className="relative group">
               <button className="nav-link flex items-center">
                 Tratamientos <ChevronDown className="ml-1 w-4 h-4" />
               </button>
               <div className="absolute hidden group-hover:block w-64 bg-white shadow-lg rounded-md mt-2">
-                {treatments.map((treatment, index) => (
-                  <div key={index} className="relative group/sub">
+                {treatments.map((treatment, index) => <div key={index} className="relative group/sub">
                     <a href={`#${treatment.id}`} className="block px-4 py-2 hover:bg-beige-light flex items-center justify-between">
                       {treatment.name}
                       <ChevronDown className="w-4 h-4" />
                     </a>
                     <div className="absolute left-full top-0 hidden group-hover/sub:block w-64 bg-white shadow-lg rounded-md">
-                      {treatment.subcategories.map((sub, subIndex) => (
-                        <a key={subIndex} href={`#${treatment.id}-${subIndex}`} className="block px-4 py-2 hover:bg-beige-light">
+                      {treatment.subcategories.map((sub, subIndex) => <a key={subIndex} href={`#${treatment.id}-${subIndex}`} className="block px-4 py-2 hover:bg-beige-light">
                           {sub}
-                        </a>
-                      ))}
+                        </a>)}
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             <a href="#productos" className="nav-link">Productos</a>
@@ -71,8 +65,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden pb-4">
+        {isOpen && <div className="md:hidden pb-4">
             <a href="#servicios" className="block nav-link py-2">Servicios</a>
             <a href="#tratamientos" className="block nav-link py-2">Tratamientos</a>
             <a href="#productos" className="block nav-link py-2">Productos</a>
@@ -82,13 +75,10 @@ const Navbar = () => {
             <a href="#blog" className="block nav-link py-2">Blog</a>
             <a href="#contacto" className="block nav-link py-2">Contacto</a>
             <a href="#contacto" className="block btn-primary text-center mt-4">Reservar Cita</a>
-          </div>
-        )}
+          </div>}
       </div>
-    </nav>
-  );
+    </nav>;
 };
-
 const treatments = [{
   id: "faciales",
   name: "Tratamientos Faciales",
@@ -110,5 +100,4 @@ const treatments = [{
   name: "Tratamientos Capilares",
   subcategories: ["Mesoterapia capilar", "Plasma rico en plaquetas (PRP) capilar", "Láser capilar"]
 }];
-
 export default Navbar;
