@@ -1,5 +1,5 @@
 
-import { Search } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const Services = () => {
   return (
