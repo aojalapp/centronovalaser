@@ -13,19 +13,31 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="nav-link">Services</a>
+            <a href="#servicios" className="nav-link">Servicios</a>
             <div className="relative group">
               <button className="nav-link flex items-center">
-                Treatments <ChevronDown className="ml-1 w-4 h-4" />
+                Tratamientos <ChevronDown className="ml-1 w-4 h-4" />
               </button>
-              <div className="absolute hidden group-hover:block w-48 bg-white shadow-lg rounded-md mt-2">
-                <a href="#facial" className="block px-4 py-2 hover:bg-beige-light">Facial Treatments</a>
-                <a href="#body" className="block px-4 py-2 hover:bg-beige-light">Body Treatments</a>
-                <a href="#aesthetic" className="block px-4 py-2 hover:bg-beige-light">Aesthetic Medicine</a>
+              <div className="absolute hidden group-hover:block w-64 bg-white shadow-lg rounded-md mt-2">
+                {treatments.map((treatment, index) => (
+                  <div key={index} className="relative group/sub">
+                    <a href={`#${treatment.id}`} className="block px-4 py-2 hover:bg-beige-light flex items-center justify-between">
+                      {treatment.name}
+                      <ChevronDown className="w-4 h-4" />
+                    </a>
+                    <div className="absolute left-full top-0 hidden group-hover/sub:block w-64 bg-white shadow-lg rounded-md">
+                      {treatment.subcategories.map((sub, subIndex) => (
+                        <a key={subIndex} href={`#${treatment.id}-${subIndex}`} className="block px-4 py-2 hover:bg-beige-light">
+                          {sub}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <a href="#products" className="nav-link">Products</a>
-            <a href="#contact" className="btn-primary">Book Now</a>
+            <a href="#productos" className="nav-link">Productos</a>
+            <a href="#contacto" className="btn-primary">Reservar Cita</a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -37,15 +49,68 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden pb-4">
-            <a href="#services" className="block nav-link py-2">Services</a>
-            <a href="#treatments" className="block nav-link py-2">Treatments</a>
-            <a href="#products" className="block nav-link py-2">Products</a>
-            <a href="#contact" className="block btn-primary text-center mt-4">Book Now</a>
+            <a href="#servicios" className="block nav-link py-2">Servicios</a>
+            <a href="#tratamientos" className="block nav-link py-2">Tratamientos</a>
+            <a href="#productos" className="block nav-link py-2">Productos</a>
+            <a href="#contacto" className="block btn-primary text-center mt-4">Reservar Cita</a>
           </div>
         )}
       </div>
     </nav>
   );
 };
+
+const treatments = [
+  {
+    id: "faciales",
+    name: "Tratamientos Faciales",
+    subcategories: [
+      "Limpieza facial profunda",
+      "Peeling químico",
+      "Microdermoabrasión",
+      "Radiofrecuencia facial",
+      "Hidratación con ácido hialurónico",
+      "Mesoterapia facial"
+    ]
+  },
+  {
+    id: "corporales",
+    name: "Tratamientos Corporales",
+    subcategories: [
+      "Cavitación",
+      "Criolipólisis",
+      "Presoterapia",
+      "Radiofrecuencia corporal",
+      "Masajes reductores y reafirmantes"
+    ]
+  },
+  {
+    id: "estetica",
+    name: "Rejuvenecimiento y Medicina Estética",
+    subcategories: [
+      "Botox",
+      "Rellenos dérmicos con ácido hialurónico",
+      "Hilos tensores",
+      "Plasma rico en plaquetas (PRP)"
+    ]
+  },
+  {
+    id: "depilacion",
+    name: "Depilación y Cuidado del Vello",
+    subcategories: [
+      "Depilación láser",
+      "Micropigmentación"
+    ]
+  },
+  {
+    id: "capilares",
+    name: "Tratamientos Capilares",
+    subcategories: [
+      "Mesoterapia capilar",
+      "Plasma rico en plaquetas (PRP) capilar",
+      "Láser capilar"
+    ]
+  }
+];
 
 export default Navbar;
