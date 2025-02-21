@@ -4,7 +4,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-3xl">
-          <h1 className="font-serif text-5xl md:text-6xl text-white mb-6 animate-fade-in lg:text-6xl">Belleza y Bienestar de Lujo </h1>
+          <h1 className="font-serif text-5xl md:text-6xl text-white mb-6 animate-fade-in lg:text-6xl">Belleza y Bienestar de Lujo! </h1>
           <p className="text-lg md:text-xl text-white/90 mb-8 animate-fade-in" style={{
           animationDelay: "0.2s"
         }}>
