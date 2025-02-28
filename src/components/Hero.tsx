@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="relative min-h-[70vh] flex items-center bg-white">
+    <div className="relative min-h-[70vh] flex items-center bg-white pt-20">
       <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-20"></div>
       <div className="container mx-auto px-4 z-10">
         <div className="flex flex-col items-center text-center justify-center">

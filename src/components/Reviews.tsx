@@ -32,8 +32,8 @@ const Reviews = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-white relative" ref={sectionRef}>
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-20"></div>
+    <section className="py-20 bg-beige relative" ref={sectionRef}>
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-30"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className={`section-title transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>

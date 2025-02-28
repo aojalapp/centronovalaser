@@ -39,14 +39,14 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="tratamientos" className="py-20 bg-white relative" ref={sectionRef}>
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-10"></div>
+    <section id="tratamientos" className="py-20 bg-slate-800 relative" ref={sectionRef}>
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-5"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="section-title overflow-hidden">
+          <h2 className="section-title text-white overflow-hidden">
             <span className="inline-block animate-slide-in-right">Nuestros Tratamientos</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto overflow-hidden">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto overflow-hidden">
             <span className="inline-block animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
               Descubre nuestra exclusiva gama de tratamientos personalizados para tu bienestar
             </span>
