@@ -1,9 +1,11 @@
 
 import { ArrowRight, Plus, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Services = () => {
   const [activePopover, setActivePopover] = useState<string | null>(null);
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const handlePopoverToggle = (id: string) => {
     if (activePopover === id) {
@@ -13,25 +15,60 @@ const Services = () => {
     }
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Start showing items with delay
+          treatments.forEach((_, index) => {
+            setTimeout(() => {
+              setVisibleItems(prev => [...prev, index]);
+            }, index * 200);
+          });
+          // Unobserve after triggering
+          if (sectionRef.current) observer.unobserve(sectionRef.current);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
   return (
-    <section id="tratamientos" className="py-20 bg-[#F1F0FB]">
-      <div className="container mx-auto px-4">
+    <section id="tratamientos" className="py-20 bg-white relative" ref={sectionRef}>
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-10"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="section-title">Nuestros Tratamientos</h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Descubre nuestra exclusiva gama de tratamientos personalizados para tu bienestar
+          <h2 className="section-title overflow-hidden">
+            <span className="inline-block animate-slide-in-right">Nuestros Tratamientos</span>
+          </h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto overflow-hidden">
+            <span className="inline-block animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
+              Descubre nuestra exclusiva gama de tratamientos personalizados para tu bienestar
+            </span>
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {treatments.map((treatment, index) => (
-            <div key={index} className="relative">
-              <div className="glass-card rounded-lg overflow-hidden shadow-lg group h-full">
-                <div className="relative">
+            <div 
+              key={index} 
+              className={`relative transition-all duration-700 transform ${
+                visibleItems.includes(index) 
+                  ? "opacity-100 translate-y-0" 
+                  : "opacity-0 translate-y-20"
+              }`}
+            >
+              <div className="glass-card rounded-lg overflow-hidden shadow-lg group h-full hover:shadow-xl transition-all duration-300">
+                <div className="relative overflow-hidden">
                   <img
                     src={treatment.image}
                     alt={treatment.title}
-                    className="w-full h-52 object-cover"
+                    className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
                 </div>
@@ -39,7 +76,7 @@ const Services = () => {
                   <h3 className="font-serif text-xl text-gold mb-4">{treatment.title}</h3>
                   <button 
                     onClick={() => handlePopoverToggle(treatment.id)}
-                    className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-gold hover:bg-gold-dark text-white text-sm transition-colors duration-200 space-x-1"
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-gold hover:bg-gold-dark text-white text-sm transition-all duration-300 space-x-1 hover:scale-105"
                   >
                     <span>Ver más</span>
                     <Plus className="w-4 h-4" />
@@ -49,13 +86,13 @@ const Services = () => {
 
               {/* Description Popover */}
               {activePopover === treatment.id && (
-                <div className="absolute inset-0 z-10 animate-fade-in">
+                <div className="absolute inset-0 z-10 animate-scale-in">
                   <div className="glass-card rounded-lg overflow-hidden shadow-xl h-full bg-white/95 p-6 flex flex-col">
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="font-serif text-xl text-gold">{treatment.title}</h3>
                       <button 
                         onClick={() => setActivePopover(null)}
-                        className="text-slate-400 hover:text-slate-600 transition-colors"
+                        className="text-slate-400 hover:text-slate-600 transition-colors hover:rotate-90 transition-transform duration-300"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -63,7 +100,7 @@ const Services = () => {
                     <p className="text-slate-600 mb-6 flex-grow">{treatment.description}</p>
                     <a 
                       href="http://wa.me/34673355012" 
-                      className="inline-block text-center w-full px-4 py-2 bg-gold hover:bg-gold-dark text-white rounded-md transition-colors"
+                      className="inline-block text-center w-full px-4 py-2 bg-gold hover:bg-gold-dark text-white rounded-md transition-all duration-300 hover:scale-105"
                     >
                       Pide más info
                     </a>
