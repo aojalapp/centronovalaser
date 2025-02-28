@@ -14,7 +14,7 @@ const Services = () => {
   };
 
   return (
-    <section id="tratamientos" className="py-20 bg-beige-light">
+    <section id="tratamientos" className="py-20 bg-[#F1F0FB]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="section-title">Nuestros Tratamientos</h2>

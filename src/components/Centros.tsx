@@ -3,7 +3,7 @@ import { MapPin, Phone } from "lucide-react";
 
 const Centros = () => {
   return (
-    <section id="centros" className="py-20 bg-cream">
+    <section id="centros" className="py-20 bg-[#D3E4FD]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="section-title">Nuestros Centros</h2>
