@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Menu, X, MapPin, Mail } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,25 +11,11 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#servicios" className="nav-link">Servicios</a>
             <a href="#tratamientos" className="nav-link">Tratamientos</a>
-            <div className="relative group">
-              <button className="nav-link flex items-center">
-                <MapPin className="w-4 h-4 mr-1" />
-                Centros
-              </button>
-              <div className="absolute hidden group-hover:block w-64 bg-white shadow-lg rounded-md mt-2">
-                <a href="#centro-cadiz" className="block px-4 py-2 hover:bg-beige-light">
-                  Centro Novalaser Cádiz
-                </a>
-                <a href="#centro-algeciras" className="block px-4 py-2 hover:bg-beige-light">
-                  Centro Novalaser Algeciras
-                </a>
-              </div>
-            </div>
-            <a href="#contacto" className="nav-link flex items-center">
-              <Mail className="w-4 h-4 mr-1" />
-              Contacto
+            <a href="#centros" className="nav-link">Centros</a>
+            <a href="tel:+34646944706" className="btn-primary flex items-center space-x-2">
+              <Phone className="w-4 h-4" />
+              <span>646 944 706</span>
             </a>
             <a href="http://wa.me/34673355012" className="btn-primary">Reservar Cita</a>
           </div>
@@ -42,11 +28,12 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && <div className="md:hidden pb-4">
-            <a href="#servicios" className="block nav-link py-2">Servicios</a>
             <a href="#tratamientos" className="block nav-link py-2">Tratamientos</a>
-            <a href="#centro-cadiz" className="block nav-link py-2 pl-6">Centro Novalaser Cádiz</a>
-            <a href="#centro-algeciras" className="block nav-link py-2 pl-6">Centro Novalaser Algeciras</a>
-            <a href="#contacto" className="block nav-link py-2">Contacto</a>
+            <a href="#centros" className="block nav-link py-2">Centros</a>
+            <a href="tel:+34646944706" className="block nav-link py-2 flex items-center">
+              <Phone className="w-4 h-4 mr-2" />
+              <span>646 944 706</span>
+            </a>
             <a href="http://wa.me/34673355012" className="block btn-primary text-center mt-4">Reservar Cita</a>
           </div>}
       </div>
