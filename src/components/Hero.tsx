@@ -7,9 +7,9 @@ const Hero = () => {
   
   useEffect(() => {
     // Create floating particles for background animation
-    const newParticles = Array.from({ length: 20 }, (_, i) => ({
+    const newParticles = Array.from({ length: 10 }, (_, i) => ({
       id: i,
-      size: Math.floor(Math.random() * 30) + 5,
+      size: Math.floor(Math.random() * 20) + 5,
       left: Math.floor(Math.random() * 100),
       top: Math.floor(Math.random() * 100),
       delay: Math.random() * 5
@@ -18,8 +18,13 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-[70vh] flex items-center section-white overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-20"></div>
+    <div className="relative min-h-[70vh] flex items-center section-luxury pt-20 overflow-hidden">
+      {/* Gold accent elements */}
+      <div className="gold-accent top-20 left-[20%]"></div>
+      <div className="gold-accent bottom-20 right-[10%]"></div>
+      <div className="gold-line w-[60%] top-40 left-[20%]"></div>
+      <div className="gold-line w-[40%] bottom-20 right-[30%]"></div>
+      
       <div className="floating-particles">
         {particles.map(particle => (
           <div 
@@ -31,22 +36,23 @@ const Hero = () => {
               left: `${particle.left}%`,
               top: `${particle.top}%`,
               animationDelay: `${particle.delay}s`,
-              opacity: 0.1 + (Math.random() * 0.2)
+              opacity: 0.05 + (Math.random() * 0.1)
             }}
           />
         ))}
       </div>
-      <div className="moving-wave-reverse"></div>
+      
       <div className="container mx-auto px-4 z-10">
         <div className="flex flex-col items-center text-center justify-center">
-          <div className="w-48 h-48 mb-8 animate-fade-in">
-            <div className="rounded-full overflow-hidden border-4 border-white shadow-xl w-full h-full">
+          <div className="w-48 h-48 mb-8 animate-fade-in relative">
+            <div className="rounded-full overflow-hidden border-2 border-gold/20 shadow-xl w-full h-full">
               <img 
                 src="/lovable-uploads/1cecbf28-ecfc-4eeb-91cf-a54bfc51a90c.png" 
                 alt="Doctora Claudia de la Rosa" 
                 className="w-full h-full object-cover"
               />
             </div>
+            <div className="absolute inset-0 rounded-full border border-gold/10 animate-pulse"></div>
           </div>
           <div className="max-w-2xl">
             <h1 className="font-serif text-4xl md:text-5xl text-slate-800 mb-6 animate-fade-in">

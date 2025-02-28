@@ -25,9 +25,9 @@ const Centros = () => {
     );
 
     // Create floating particles for background animation
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+    const newParticles = Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      size: Math.floor(Math.random() * 20) + 5,
+      size: Math.floor(Math.random() * 15) + 5,
       left: Math.floor(Math.random() * 100),
       top: Math.floor(Math.random() * 100),
       delay: Math.random() * 5
@@ -41,8 +41,13 @@ const Centros = () => {
   }, []);
   
   return (
-    <section id="centros" className="py-20 section-blue relative overflow-hidden" ref={sectionRef}>
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-10"></div>
+    <section id="centros" className="py-20 section-luxury-alt relative overflow-hidden" ref={sectionRef}>
+      {/* Gold accent elements */}
+      <div className="gold-accent bottom-20 left-[25%]"></div>
+      <div className="gold-accent top-20 right-[20%]"></div>
+      <div className="gold-line w-[70%] top-30 left-[15%]"></div>
+      <div className="gold-line w-[50%] bottom-20 right-[25%]"></div>
+      
       <div className="floating-particles">
         {particles.map(particle => (
           <div 
@@ -54,17 +59,18 @@ const Centros = () => {
               left: `${particle.left}%`,
               top: `${particle.top}%`,
               animationDelay: `${particle.delay}s`,
+              opacity: 0.05 + (Math.random() * 0.1)
             }}
           />
         ))}
       </div>
-      <div className="moving-wave-reverse"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="section-title text-white overflow-hidden">
+          <h2 className="section-title overflow-hidden">
             <span className="inline-block animate-slide-in-right">Nuestros Centros</span>
           </h2>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto overflow-hidden">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto overflow-hidden">
             <span className="inline-block animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
               Visítanos en cualquiera de nuestras tres localizaciones
             </span>
@@ -79,11 +85,13 @@ const Centros = () => {
                 visibleItems.includes(index) 
                   ? "opacity-100 translate-y-0" 
                   : "opacity-0 translate-y-20"
-              } hover:shadow-xl hover:-translate-y-2`}
+              } hover:shadow-xl hover:-translate-y-2 relative overflow-hidden`}
             >
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gold/5 rounded-bl-full -z-10"></div>
+              
               <h3 className="font-serif text-xl text-gold mb-4">{center.name}</h3>
-              <p className="text-slate-700 mb-2">{center.address}</p>
-              <p className="text-slate-700 mb-6">{center.city}</p>
+              <p className="text-slate-600 mb-2">{center.address}</p>
+              <p className="text-slate-600 mb-6">{center.city}</p>
               
               <div className="mt-auto grid grid-cols-1 gap-3">
                 <a 

@@ -34,9 +34,9 @@ const Services = () => {
     );
 
     // Create floating particles for background animation
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+    const newParticles = Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      size: Math.floor(Math.random() * 20) + 5,
+      size: Math.floor(Math.random() * 15) + 5,
       left: Math.floor(Math.random() * 100),
       top: Math.floor(Math.random() * 100),
       delay: Math.random() * 5
@@ -50,8 +50,13 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="tratamientos" className="py-20 section-blue relative" ref={sectionRef}>
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-10"></div>
+    <section id="tratamientos" className="py-20 section-luxury-alt relative overflow-hidden" ref={sectionRef}>
+      {/* Gold accent elements */}
+      <div className="gold-accent top-40 right-[15%]"></div>
+      <div className="gold-accent bottom-40 left-[10%]"></div>
+      <div className="gold-line w-[70%] top-20 left-[15%]"></div>
+      <div className="gold-line w-[50%] bottom-10 right-[25%]"></div>
+      
       <div className="floating-particles">
         {particles.map(particle => (
           <div 
@@ -63,17 +68,18 @@ const Services = () => {
               left: `${particle.left}%`,
               top: `${particle.top}%`,
               animationDelay: `${particle.delay}s`,
+              opacity: 0.05 + (Math.random() * 0.1)
             }}
           />
         ))}
       </div>
-      <div className="moving-wave-reverse"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="section-title text-white overflow-hidden">
+          <h2 className="section-title overflow-hidden">
             <span className="inline-block animate-slide-in-right">Nuestros Tratamientos</span>
           </h2>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto overflow-hidden">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto overflow-hidden">
             <span className="inline-block animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
               Descubre nuestra exclusiva gama de tratamientos personalizados para tu bienestar
             </span>
@@ -138,7 +144,6 @@ const Services = () => {
           ))}
         </div>
       </div>
-      <div className="moving-wave"></div>
     </section>
   );
 };
