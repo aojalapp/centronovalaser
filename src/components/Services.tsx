@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 const Services = () => {
   const [activePopover, setActivePopover] = useState<string | null>(null);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [particles, setParticles] = useState<{id: number, size: number, left: number, top: number, delay: number}[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
 
   const handlePopoverToggle = (id: string) => {
@@ -32,6 +33,16 @@ const Services = () => {
       { threshold: 0.1 }
     );
 
+    // Create floating particles for background animation
+    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      size: Math.floor(Math.random() * 20) + 5,
+      left: Math.floor(Math.random() * 100),
+      top: Math.floor(Math.random() * 100),
+      delay: Math.random() * 5
+    }));
+    setParticles(newParticles);
+
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
       if (sectionRef.current) observer.unobserve(sectionRef.current);
@@ -39,14 +50,30 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="tratamientos" className="py-20 bg-slate-800 relative" ref={sectionRef}>
-      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-5"></div>
+    <section id="tratamientos" className="py-20 section-blue relative" ref={sectionRef}>
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-10"></div>
+      <div className="floating-particles">
+        {particles.map(particle => (
+          <div 
+            key={particle.id}
+            className="particle"
+            style={{
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              animationDelay: `${particle.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+      <div className="moving-wave-reverse"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title text-white overflow-hidden">
             <span className="inline-block animate-slide-in-right">Nuestros Tratamientos</span>
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto overflow-hidden">
+          <p className="text-lg text-blue-100 max-w-2xl mx-auto overflow-hidden">
             <span className="inline-block animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
               Descubre nuestra exclusiva gama de tratamientos personalizados para tu bienestar
             </span>
@@ -111,6 +138,7 @@ const Services = () => {
           ))}
         </div>
       </div>
+      <div className="moving-wave"></div>
     </section>
   );
 };

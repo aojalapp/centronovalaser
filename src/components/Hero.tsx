@@ -1,10 +1,42 @@
 
 import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [particles, setParticles] = useState<{id: number, size: number, left: number, top: number, delay: number}[]>([]);
+  
+  useEffect(() => {
+    // Create floating particles for background animation
+    const newParticles = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      size: Math.floor(Math.random() * 30) + 5,
+      left: Math.floor(Math.random() * 100),
+      top: Math.floor(Math.random() * 100),
+      delay: Math.random() * 5
+    }));
+    setParticles(newParticles);
+  }, []);
+
   return (
-    <div className="relative min-h-[70vh] flex items-center bg-white pt-20">
+    <div className="relative min-h-[70vh] flex items-center section-white overflow-hidden pt-20">
       <div className="absolute inset-0 bg-[url('/lovable-uploads/e98b2de1-25bd-47d9-83e6-a847446add8b.png')] bg-repeat opacity-20"></div>
+      <div className="floating-particles">
+        {particles.map(particle => (
+          <div 
+            key={particle.id}
+            className="particle"
+            style={{
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              animationDelay: `${particle.delay}s`,
+              opacity: 0.1 + (Math.random() * 0.2)
+            }}
+          />
+        ))}
+      </div>
+      <div className="moving-wave-reverse"></div>
       <div className="container mx-auto px-4 z-10">
         <div className="flex flex-col items-center text-center justify-center">
           <div className="w-48 h-48 mb-8 animate-fade-in">
