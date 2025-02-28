@@ -1,7 +1,18 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus, X } from "lucide-react";
+import { useState } from "react";
 
 const Services = () => {
+  const [activePopover, setActivePopover] = useState<string | null>(null);
+
+  const handlePopoverToggle = (id: string) => {
+    if (activePopover === id) {
+      setActivePopover(null);
+    } else {
+      setActivePopover(id);
+    }
+  };
+
   return (
     <section id="tratamientos" className="py-20 bg-beige-light">
       <div className="container mx-auto px-4">
@@ -14,23 +25,52 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {treatments.map((treatment, index) => (
-            <a 
-              key={index}
-              href={`#${treatment.id}`}
-              className="glass-card rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 group"
-            >
-              <div className="relative">
-                <img
-                  src={treatment.image}
-                  alt={treatment.title}
-                  className="w-full h-52 object-cover"
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+            <div key={index} className="relative">
+              <div className="glass-card rounded-lg overflow-hidden shadow-lg group h-full">
+                <div className="relative">
+                  <img
+                    src={treatment.image}
+                    alt={treatment.title}
+                    className="w-full h-52 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+                </div>
+                <div className="p-5 text-center">
+                  <h3 className="font-serif text-xl text-gold mb-4">{treatment.title}</h3>
+                  <button 
+                    onClick={() => handlePopoverToggle(treatment.id)}
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-gold hover:bg-gold-dark text-white text-sm transition-colors duration-200 space-x-1"
+                  >
+                    <span>Ver más</span>
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-              <div className="p-5 text-center">
-                <h3 className="font-serif text-xl text-gold mb-2">{treatment.title}</h3>
-              </div>
-            </a>
+
+              {/* Description Popover */}
+              {activePopover === treatment.id && (
+                <div className="absolute inset-0 z-10 animate-fade-in">
+                  <div className="glass-card rounded-lg overflow-hidden shadow-xl h-full bg-white/95 p-6 flex flex-col">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="font-serif text-xl text-gold">{treatment.title}</h3>
+                      <button 
+                        onClick={() => setActivePopover(null)}
+                        className="text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+                    <p className="text-slate-600 mb-6 flex-grow">{treatment.description}</p>
+                    <a 
+                      href="http://wa.me/34673355012" 
+                      className="inline-block text-center w-full px-4 py-2 bg-gold hover:bg-gold-dark text-white rounded-md transition-colors"
+                    >
+                      Pide más info
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -42,51 +82,61 @@ const treatments = [
   {
     id: "laser-vascular",
     title: "Láser Vascular",
+    description: "Si te preocupan las venitas visibles en piernas o rostro, este tratamiento con láser es ideal para reducirlas de manera segura y efectiva, mejorando la apariencia de tu piel.",
     image: "/lovable-uploads/9328d841-39bf-403e-9b88-fe9de294eda7.png"
   },
   {
     id: "nutricion-dietetica",
     title: "Nutrición y Dietética",
+    description: "Te ayudamos a encontrar el equilibrio en tu alimentación con asesoramiento personalizado, para que te sientas bien por dentro y por fuera, logrando tus objetivos de salud de forma saludable.",
     image: "/lovable-uploads/c318c70a-4aea-493e-9503-d72c4f797eb9.png"
   },
   {
     id: "medicina-antienvejecimiento",
     title: "Medicina Antienvejecimiento",
+    description: "Cuidamos tu piel con tratamientos diseñados para prevenir y suavizar los signos de la edad, devolviéndole firmeza y luminosidad. Perfecto si quieres verte y sentirte más joven.",
     image: "/lovable-uploads/9db21fdc-382b-4b80-bdb3-55afe226bfdc.png"
   },
   {
     id: "tratamiento-lesiones-pigmentadas",
     title: "Tratamiento de lesiones pigmentadas",
+    description: "Si las manchas en la piel te preocupan, este tratamiento te ayuda a reducirlas de forma progresiva para un tono más uniforme y una piel más radiante.",
     image: "/lovable-uploads/51d17fae-5985-4c9e-88bd-7290c8784c51.png"
   },
   {
     id: "depilacion-laser",
     title: "Depilación Láser",
+    description: "Olvídate del vello no deseado con un método seguro y duradero. Ideal para mantener tu piel suave sin la molestia del afeitado o la cera.",
     image: "/lovable-uploads/588e9c3b-0fbb-49c8-8b79-f4dee8a55ada.png"
   },
   {
     id: "endermologia",
     title: "Endermología",
+    description: "Te ofrecemos una solución efectiva para mejorar la textura de tu piel, reduciendo la celulitis y ayudando a activar la circulación, para que te sientas más cómoda y segura con tu cuerpo.",
     image: "/lovable-uploads/c318c70a-4aea-493e-9503-d72c4f797eb9.png"
   },
   {
     id: "skin-tightening",
     title: "Skin Tightening",
+    description: "Recupera la firmeza de tu piel con este tratamiento que estimula la producción de colágeno, ideal para mejorar la elasticidad en rostro, cuello y cuerpo.",
     image: "/lovable-uploads/9db21fdc-382b-4b80-bdb3-55afe226bfdc.png"
   },
   {
     id: "mesoterapia-virtual",
     title: "Mesoterapia Virtual",
+    description: "Hidrata y revitaliza tu piel sin necesidad de agujas, con activos que penetran profundamente para un efecto rejuvenecedor inmediato y duradero.",
     image: "/lovable-uploads/51d17fae-5985-4c9e-88bd-7290c8784c51.png"
   },
   {
     id: "carboxiterapia",
     title: "Carboxiterapia",
+    description: "Un tratamiento natural que mejora la circulación y reduce celulitis, estrías y grasa localizada, ayudándote a lograr una piel más lisa y tonificada.",
     image: "/lovable-uploads/588e9c3b-0fbb-49c8-8b79-f4dee8a55ada.png"
   },
   {
     id: "depilacion",
     title: "Depilación",
+    description: "Para una piel siempre suave y cuidada, ofrecemos depilación con métodos tradicionales adaptados a tus necesidades y sensibilidad.",
     image: "/lovable-uploads/9328d841-39bf-403e-9b88-fe9de294eda7.png"
   }
 ];
