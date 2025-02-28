@@ -29,7 +29,6 @@ const Services = () => {
               </div>
               <div className="p-5 text-center">
                 <h3 className="font-serif text-xl text-gold mb-2">{treatment.title}</h3>
-                <p className="text-slate-600 text-sm">{treatment.categories.join(' • ')}</p>
               </div>
             </a>
           ))}
@@ -43,56 +42,52 @@ const treatments = [
   {
     id: "laser-vascular",
     title: "Láser Vascular",
-    categories: ["Tratamientos Corporales", "Tratamientos Faciales"],
     image: "/lovable-uploads/9328d841-39bf-403e-9b88-fe9de294eda7.png"
   },
   {
     id: "nutricion-dietetica",
     title: "Nutrición y Dietética",
-    categories: ["Nutrición y Dietética"],
     image: "/lovable-uploads/c318c70a-4aea-493e-9503-d72c4f797eb9.png"
   },
   {
     id: "medicina-antienvejecimiento",
     title: "Medicina Antienvejecimiento",
-    categories: ["Medicina Antienvejecimiento"],
     image: "/lovable-uploads/9db21fdc-382b-4b80-bdb3-55afe226bfdc.png"
   },
   {
     id: "tratamiento-lesiones-pigmentadas",
     title: "Tratamiento de lesiones pigmentadas",
-    categories: ["Tratamientos Corporales", "Tratamientos Faciales"],
     image: "/lovable-uploads/51d17fae-5985-4c9e-88bd-7290c8784c51.png"
   },
   {
     id: "depilacion-laser",
     title: "Depilación Láser",
-    categories: ["Depilación Láser"],
     image: "/lovable-uploads/588e9c3b-0fbb-49c8-8b79-f4dee8a55ada.png"
   },
   {
     id: "endermologia",
     title: "Endermología",
-    categories: ["Tratamientos Corporales", "Tratamientos Faciales"],
     image: "/lovable-uploads/c318c70a-4aea-493e-9503-d72c4f797eb9.png"
   },
   {
     id: "skin-tightening",
     title: "Skin Tightening",
-    categories: ["Tratamientos Corporales", "Tratamientos Faciales"],
     image: "/lovable-uploads/9db21fdc-382b-4b80-bdb3-55afe226bfdc.png"
   },
   {
     id: "mesoterapia-virtual",
     title: "Mesoterapia Virtual",
-    categories: ["Tratamientos Corporales", "Tratamientos Faciales"],
     image: "/lovable-uploads/51d17fae-5985-4c9e-88bd-7290c8784c51.png"
   },
   {
     id: "carboxiterapia",
     title: "Carboxiterapia",
-    categories: ["Tratamientos Corporales", "Tratamientos Faciales"],
     image: "/lovable-uploads/588e9c3b-0fbb-49c8-8b79-f4dee8a55ada.png"
+  },
+  {
+    id: "depilacion",
+    title: "Depilación",
+    image: "/lovable-uploads/9328d841-39bf-403e-9b88-fe9de294eda7.png"
   }
 ];
 
